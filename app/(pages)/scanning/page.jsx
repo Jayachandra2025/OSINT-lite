@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ShiningText } from "@/components/ui/shining-text";
 import { CircleAnimationsGrid } from "@/components/ui/cicle-animation-3";
@@ -134,4 +134,12 @@ const Scanning = () => {
   );
 };
 
-export default Scanning;
+const Page = () => {
+  return (
+    <Suspense>
+      <Scanning />
+    </Suspense>
+  );
+};
+
+export default Page;

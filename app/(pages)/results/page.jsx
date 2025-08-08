@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   Card,
@@ -379,7 +379,8 @@ const Results = () => {
                               </li>
                               <li>
                                 <strong>Homoglyph:</strong> Replacing characters
-                                with visually similar ones (e.g., 'o' with '0').
+                                with visually similar ones (e.g., &apos;o&apos;
+                                with &apos;0&apos;).
                               </li>
                               <li>
                                 <strong>Insertion:</strong> Adding an extra
@@ -565,4 +566,12 @@ const Results = () => {
   );
 };
 
-export default Results;
+const Page = () => {
+  return (
+    <Suspense>
+      <Results />
+    </Suspense>
+  );
+};
+
+export default Page;
