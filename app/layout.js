@@ -18,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "K2K Discovery",
+  title: "OSINT",
   description: "An Infosec K2K app",
   icons: {
     icon: "/icon/favicon/favicon.ico",
