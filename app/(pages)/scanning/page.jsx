@@ -137,14 +137,22 @@ const Scanning = () => {
             <li>
               <ShiningText
                 icon={
-                  <Image
-                    src="/img/loading-1.gif"
-                    alt="search"
-                    width={20}
-                    height={20}
-                  />
+                  scanStatus === "pending" ? (
+                    <Image
+                      src="/img/loading-1.gif"
+                      alt="search"
+                      width={20}
+                      height={20}
+                    />
+                  ) : (
+                    <FaCheckCircle className="text-green-500 w-6 h-6" />
+                  )
                 }
-                text={`Scanning for ${search}...`}
+                text={
+                  scanStatus === "pending"
+                    ? `Scanning for ${search}...`
+                    : `Scanning completed`
+                }
                 className="text-xl font-semibold text-left"
                 delay={0}
                 duration={4}
