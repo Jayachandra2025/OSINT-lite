@@ -37,12 +37,12 @@ const colorsList = [
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="custom-tooltip flex flex-col gap-2 bg-white p-2 rounded-md">
+      <div className="custom-tooltip flex flex-col gap-2 bg-white p-2 rounded-md shadow-md border border-gray-200">
         <div className="flex items-center gap-2">
           <p className="text-sm font-medium">{label} : </p>
-          <p className="text-sm">{payload[0].value} Leaks</p>
+          <p className="text-sm">{payload[0].value} Domains</p>
         </div>
-        <p className="text-[12px] font-light">Click to expand results</p>
+        {/* <p className="text-[12px] font-light">Click to expand results</p> */}
       </div>
     );
   }
@@ -129,13 +129,13 @@ const BarChartComponent = ({
           tickLine={false}
           tickMargin={10}
           axisLine={false}
-          tickFormatter={(value) => value.slice(0, 4)}
+          // tickFormatter={(value) => value.slice(0, 4)}
         />
         <ChartTooltip cursor={false} content={<CustomTooltip />} />
         <defs>
           <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#788aff" stopOpacity={1} />
-            <stop offset="100%" stopColor="#0099ff" stopOpacity={0.3} />
+            <stop offset="100%" stopColor="#788aff" stopOpacity={0.6} />
           </linearGradient>
         </defs>
         {/* <Bar dataKey="desktop" fill="url(#barGradient)" radius={5} /> */}

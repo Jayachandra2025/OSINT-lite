@@ -372,7 +372,7 @@ const Results = () => {
                             <h4 className="text-lg font-semibold">
                               Common Impersonation Techniques Found:
                             </h4>
-                            <ul className="list-disc list-inside">
+                            <ul className="list-none list-inside text-sm">
                               <li>
                                 <strong>Addition/Omission:</strong> Adding or
                                 removing a single letter, a common typo.
@@ -411,22 +411,15 @@ const Results = () => {
                         </CardHeader>
                         <CardContent>
                           <PieChartComponent
-                            title="Top Data Breach Sources"
+                            title="Breaches"
                             openSheet={() => {}}
+                            data={dashboard?.data?.dashboard?.topDataBreachSources?.data.map(
+                              (item) => ({
+                                label: item.Title,
+                                value: item.Value,
+                              })
+                            )}
                           />
-                          <div className="flex flex-row gap-2 w-full justify-center flex-wrap">
-                            {mockData.map((item, index) => (
-                              <div key={index} className="flex items-center">
-                                <span
-                                  style={{ backgroundColor: item.fill }}
-                                  className="inline-block w-4 h-4 mr-2 rounded-sm"
-                                ></span>
-                                <span className="text-sm text-nowrap">
-                                  {item.label}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
                         </CardContent>
                       </Card>
                       <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4">
@@ -437,7 +430,7 @@ const Results = () => {
                         </CardHeader>
                         <CardContent>
                           <PieChartComponent
-                            title="Domain Reputation Analysis"
+                            title="Domains"
                             data={mockData2}
                             openSheet={() => {}}
                           />

@@ -53,6 +53,29 @@ const mockData = [
   },
 ];
 
+const colorArr = [
+  "#FF6F61",
+  "#FFB347",
+  "#FFD700",
+  "#66CDAA",
+  "#4682B4",
+  "#8A2BE2",
+  "#FF69B4",
+  "#32CD32",
+  "#FFA07A",
+  "#FF8C00",
+  "#1E90FF",
+  "#FFD700",
+  "#20B2AA",
+  "#FF1493",
+  "#9370DB",
+  "#4682B4",
+  "#FFA500",
+  "#3CB371",
+  "#FFD700",
+  "#CD5C5C",
+];
+
 const chartConfig = {
   value: {
     label: "Percentage",
@@ -106,15 +129,14 @@ const PieChartComponent = ({ data = mockData, title = "" }) => {
   if (data.length === 0) {
     return null;
   }
-  //   data = data.map((item) => ({
-  //     ...item,
-  //     fill:
-  //       item.label === "Weak"
-  //         ? "#FF5C5C"
-  //         : item.label === "Medium"
-  //         ? "#4DBEFF"
-  //         : "#32E6B3",
-  //   }));
+  const totalOfValues = data.reduce((acc, curr) => acc + curr.value, 0);
+  data = data.map((item, index) => ({
+    ...item,
+    percentage: Number(((item.value / totalOfValues) * 100).toFixed(2)),
+    fill: colorArr[index % colorArr.length],
+    opacity: 1,
+  }));
+  console.log(data);
   // if (!data) {
   //   return null;
   // }
@@ -123,54 +145,69 @@ const PieChartComponent = ({ data = mockData, title = "" }) => {
   // }, [data]);
 
   return (
-    <ChartContainer
-      config={chartConfig}
-      className=" aspect-square max-h-[400px] mx-auto"
-    >
-      <PieChart>
-        <ChartTooltip cursor={false} content={<CustomTooltip />} />
-        <Pie
-          data={data}
-          dataKey="percentage"
-          nameKey="label"
-          innerRadius={90}
-          strokeWidth={5}
-          isAnimationActive={false}
-          //   gap={10}
-        >
-          <Label
-            content={({ viewBox }) => {
-              if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                return (
-                  <text
-                    x={viewBox.cx}
-                    y={viewBox.cy}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                  >
-                    <tspan
+    <>
+      <ChartContainer
+        config={chartConfig}
+        className=" aspect-square max-h-[400px] mx-auto"
+      >
+        <PieChart>
+          <ChartTooltip cursor={false} content={<CustomTooltip />} />
+          <Pie
+            data={data}
+            dataKey="percentage"
+            nameKey="label"
+            innerRadius={90}
+            strokeWidth={5}
+            isAnimationActive={false}
+            //   gap={10}
+          >
+            <Label
+              content={({ viewBox }) => {
+                if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                  return (
+                    <text
                       x={viewBox.cx}
                       y={viewBox.cy}
-                      className="fill-black text-xl font-bold"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
                     >
-                      {/* {totalOfValues.toLocaleString()} Test */}
-                      {"Test"}
-                    </tspan>
-                    <tspan
-                      x={viewBox.cx}
-                      y={(viewBox.cy || 0) + 24}
-                      className="fill-white"
-                    >
-                      Passwords
-                    </tspan>
-                  </text>
-                );
-              }
-            }}
-          />
-        </Pie>
-      </PieChart>
-    </ChartContainer>
+                      <tspan
+                        x={viewBox.cx}
+                        y={viewBox.cy}
+                        className="fill-black text-xl font-bold"
+                      >
+                        {totalOfValues.toLocaleString()}
+                        {" " + title}
+                      </tspan>
+                      <tspan
+                        x={viewBox.cx}
+                        y={(viewBox.cy || 0) + 24}
+                        className="fill-white"
+                      >
+                        Passwords
+                      </tspan>
+                    </text>
+                  );
+                }
+              }}
+            />
+          </Pie>
+        </PieChart>
+      </ChartContainer>
+      <div className="flex flex-row gap-2 w-full justify-center flex-wrap">
+        {data?.map((item, index) => (
+          <div key={index} className="flex items-center">
+            <span
+              style={{ backgroundColor: item.fill }}
+              className="inline-block w-4 h-4 mr-2 rounded-sm"
+            ></span>
+            <span className="text-sm text-nowrap">
+              {item.label} : {item.value}
+            </span>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 

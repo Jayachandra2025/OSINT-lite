@@ -22,7 +22,9 @@ const DynamicTable = ({ data }) => {
         {data.map((item, index) => (
           <TableRow key={index}>
             {headers.map((header, index) => (
-              <TableCell key={index}>{item[header]}</TableCell>
+              <TableCell key={index} className="text-left  w-fit">
+                {item[header]}
+              </TableCell>
             ))}
           </TableRow>
         ))}

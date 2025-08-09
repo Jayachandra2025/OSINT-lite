@@ -5,6 +5,44 @@ import { ShiningText } from "@/components/ui/shining-text";
 import { CircleAnimationsGrid } from "@/components/ui/cicle-animation-3";
 import { TextLoop } from "@/components/ui/text-loop";
 import { FaCheck, FaCheckCircle } from "react-icons/fa";
+import { IconCloud } from "@/components/magicui/icon-cloud";
+import Image from "next/image";
+
+const slugs = [
+  "telegram",
+  "gmail",
+  "pinterest",
+  "maildotru",
+  "googlemaps",
+  "git",
+  "github",
+  "gitlab",
+  "flutter",
+  "android",
+  "html5",
+  "css3",
+  "nodedotjs",
+  "express",
+  "nextdotjs",
+  "prisma",
+  "amazonaws",
+  "postgresql",
+  "firebase",
+  "nginx",
+  "vercel",
+  "testinglibrary",
+  "jest",
+  "cypress",
+  "docker",
+  "git",
+  "jira",
+  "github",
+  "gitlab",
+  "visualstudiocode",
+  "androidstudio",
+  "sonarqube",
+  "figma",
+];
 
 const Scanning = () => {
   const searchParams = useSearchParams();
@@ -46,6 +84,10 @@ const Scanning = () => {
     }
   };
 
+  const images = slugs.map(
+    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`
+  );
+
   useEffect(() => {
     let intervalId;
     if (sessionId && scanStatus === "pending") {
@@ -60,13 +102,14 @@ const Scanning = () => {
     <main className="bg-search">
       <div className="flex flex-col p-16 min-h-screen">
         <>
-          <ShiningText
+          {/* <ShiningText
             text={`Searching for: ${search}`}
             className="text-3xl font-semibold text-center"
             duration={5}
-          />
-          <div className="w-full py-16">
-            <CircleAnimationsGrid className="w-[300px] h-[300px] mx-auto" />
+          /> */}
+          <div className="w-full py-5 flex justify-center">
+            {/* <CircleAnimationsGrid className="w-[300px] h-[300px] mx-auto" /> */}
+            <IconCloud images={images} />
           </div>
           {/* <div className="w-full px-16">
               <TextLoop
@@ -93,33 +136,22 @@ const Scanning = () => {
           <ul className="flex flex-col gap-4  mx-auto ">
             <li>
               <ShiningText
-                icon={<FaCheckCircle className="text-green-500 w-6 h-6" />}
-                text="Lorem Ipsum dbsbs sbvks vskjbvks vksab kjvaskaskj ak kajbvkjsabkajbv ksab vkjsabvkbvabkavjakva"
+                icon={
+                  <Image
+                    src="/img/loading-1.gif"
+                    alt="search"
+                    width={20}
+                    height={20}
+                  />
+                }
+                text={`Scanning for ${search}...`}
                 className="text-xl font-semibold text-left"
                 delay={0}
                 duration={4}
               />
             </li>
-            <li>
-              <ShiningText
-                icon={<FaCheckCircle className="text-green-500 w-6 h-6" />}
-                text="Lorem Ipsum dbsbs sbvks vskjbvks vksab kjvaskaskj ak kajbvkjsabkajbv ksab vkjsabvkbvabkavjakva"
-                className="text-xl font-semibold text-left"
-                delay={0.5}
-                duration={4}
-              />
-            </li>
-            <li>
-              <ShiningText
-                icon={<FaCheckCircle className="text-green-500 w-6 h-6" />}
-                text="Lorem Ipsum dbsbs sbvks vskjbvks vksab kjvaskaskj ak kajbvkjsabkajbv ksab vkjsabvkbvabkavjakva"
-                className="text-xl font-semibold text-left"
-                delay={1}
-                duration={4}
-              />
-            </li>
           </ul>
-          <div className="w-full flex justify-center py-16">
+          <div className="w-full flex justify-center py-10">
             <button
               className="bg-search-button text-white px-6 pt-2 pb-3 rounded-md bg-black disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={loading}

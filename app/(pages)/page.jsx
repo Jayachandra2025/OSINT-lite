@@ -59,6 +59,11 @@ const Page = () => {
               className="global-search-input"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
             />
           </div>
           <div className="col-span-1 ">
