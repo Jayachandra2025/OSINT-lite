@@ -44,6 +44,33 @@ const slugs = [
   "figma",
 ];
 
+const icons = [
+  "ai",
+  "algorithm",
+  "chrome",
+  "cloud-download",
+  "desktop",
+  "gear",
+  "globe-1",
+  "gmail",
+  "idea",
+  "location",
+  "lock-password",
+  "person",
+  "server",
+  "sheild-broken",
+  "shield-check",
+  "shield-person",
+  "shield-security",
+  "telegram",
+  "twitter",
+  "wifi",
+  "android",
+  "facebook",
+  "google",
+  "html",
+  "id-card",
+];
 const Scanning = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
@@ -84,9 +111,11 @@ const Scanning = () => {
     }
   };
 
-  const images = slugs.map(
-    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`
-  );
+  // const images = slugs.map(
+  //   (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`
+  // );
+
+  const images = icons.map((icon) => `/icon/custom/${icon}.svg`);
 
   useEffect(() => {
     let intervalId;
