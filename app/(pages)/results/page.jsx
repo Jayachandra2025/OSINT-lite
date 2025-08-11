@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/table";
 import DynamicTable from "@/components/DynamicTable";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 const mockData = [
   {
@@ -227,6 +228,7 @@ const Results = () => {
   const [dashboard, setDashboard] = useState(null);
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("sessionId");
+  const titleDomain = searchParams.get("search");
 
   const fetchDashboard = async () => {
     try {
@@ -261,7 +263,8 @@ const Results = () => {
       <div className="flex flex-col p-16 min-h-screen pb-16">
         <header className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">
-            OSINT Summary Report: <span className="text-blue-500">ewe.de</span>
+            OSINT Summary Report:{" "}
+            <span className="text-blue-500">{titleDomain}</span>
           </h1>
           <p className="text-sm text-gray-500">
             Generated on:{" "}
@@ -431,22 +434,29 @@ const Results = () => {
                         <CardContent>
                           <PieChartComponent
                             title="Domains"
-                            data={mockData2}
+                            data={dashboard?.data?.dashboard?.domainReputationAnalysis?.data.map(
+                              (item) => ({
+                                label: item.Title,
+                                value: item.Value,
+                              })
+                            )}
                             openSheet={() => {}}
                           />
-                          <div className="flex flex-row gap-2 w-full justify-center flex-wrap">
-                            {mockData2.map((item, index) => (
-                              <div key={index} className="flex items-center">
-                                <span
-                                  style={{ backgroundColor: item.fill }}
-                                  className="inline-block w-4 h-4 mr-2 rounded-sm"
-                                ></span>
-                                <span className="text-sm text-nowrap">
-                                  {item.label}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
+                          {/* <div className="flex flex-row gap-2 w-full justify-center flex-wrap">
+                            {dashboard?.data?.dashboard?.domainReputationAnalysis?.data.map(
+                              (item, index) => (
+                                <div key={index} className="flex items-center">
+                                  <span
+                                    style={{ backgroundColor: item.fill }}
+                                    className="inline-block w-4 h-4 mr-2 rounded-sm"
+                                  ></span>
+                                  <span className="text-sm text-nowrap">
+                                    {item.label}
+                                  </span>
+                                </div>
+                              )
+                            )}
+                          </div> */}
                         </CardContent>
                       </Card>
                     </div>
@@ -512,12 +522,39 @@ const Results = () => {
                           </p>
                         </CardHeader>
                         <CardContent>
-                          <DynamicTable
+                          {/* <DynamicTable
                             data={
                               dashboard?.data?.domainIntel
                                 ?.domainPopularityReach?.data
                             }
-                          />
+                          /> */}
+                          <Table>
+                            <TableHeader>
+                              <TableRow>
+                                <TableHead>Title</TableHead>
+                                <TableHead>Description</TableHead>
+                                <TableHead>Rank</TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                              {dashboard?.data?.domainIntel?.domainPopularityReach?.data.map(
+                                (item, index) => (
+                                  <TableRow key={index}>
+                                    <TableCell>{item.Title}</TableCell>
+                                    <TableCell>{item.Description}</TableCell>
+                                    <TableCell className="blur-sm pointer-events-none">
+                                      <Image
+                                        src={"/img/blur-rank.png"}
+                                        alt="Rank"
+                                        width={100}
+                                        height={100}
+                                      />
+                                    </TableCell>
+                                  </TableRow>
+                                )
+                              )}
+                            </TableBody>
+                          </Table>
                         </CardContent>
                       </Card>
                     </div>
