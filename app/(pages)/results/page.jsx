@@ -229,6 +229,7 @@ const Results = () => {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("sessionId");
   const titleDomain = searchParams.get("search");
+  const [tabValue, setTabValue] = useState("dashboard");
 
   const fetchDashboard = async () => {
     try {
@@ -305,7 +306,19 @@ const Results = () => {
                 </CardContent>
               </Card>
               {dashboard?.kpiCards?.map((item, index) => (
-                <Card key={index} className="col-span-2 bg-white shadow-lg">
+                <Card
+                  key={index}
+                  className="col-span-2 bg-white shadow-lg cursor-pointer"
+                  onClick={() =>
+                    item.title === "Spoofed Domains"
+                      ? setTabValue("domain-intel")
+                      : item.title === "Exposed Accounts"
+                      ? setTabValue("exposed-accounts")
+                      : item.title === "Exposed Subdomains"
+                      ? setTabValue("technical")
+                      : setTabValue("dashboard")
+                  }
+                >
                   <CardHeader className="flex flex-col gap-2">
                     <h3 className="text-xl font-bold">{item.title}</h3>
                     <h2 className="text-4xl font-extrabold">{item.value}</h2>
@@ -316,7 +329,12 @@ const Results = () => {
             </section>
             {dashboard?.data && (
               <section className="p-5 ">
-                <Tabs defaultValue="dashboard" className="w-full">
+                <Tabs
+                  defaultValue="dashboard"
+                  className="w-full"
+                  onValueChange={(value) => setTabValue(value)}
+                  value={tabValue}
+                >
                   <TabsList>
                     <TabsTrigger
                       value="dashboard"
