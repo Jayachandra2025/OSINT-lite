@@ -10,7 +10,7 @@ import {
 const DynamicTable = ({ data }) => {
   const headers = Object.keys(data[0]);
   return (
-    <Table>
+    <Table className="w-full dynamic-table">
       <TableHeader>
         <TableRow>
           {headers.map((header, index) => (

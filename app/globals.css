@@ -79,6 +79,12 @@ body.dark {
   border-left: 4px solid #c77700;
 }
 
+.dynamic-table {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 10px;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
