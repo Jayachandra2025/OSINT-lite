@@ -154,7 +154,7 @@ body.dark {
   /* background-color: white; */
 }
 .pdf-page {
-  width: 210mm;
+  /* width: 210mm; */
   font-family: "Inter", sans-serif;
   /* min-height: 250mm; */
   /* border-radius: 10px; */
