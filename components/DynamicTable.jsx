@@ -20,7 +20,7 @@ const DynamicTable = ({ data }) => {
       </TableHeader>
       <TableBody>
         {data.map((item, index) => (
-          <TableRow key={index}>
+          <TableRow key={index} className="avoid-page-break">
             {headers.map((header, index) => (
               <TableCell key={index} className="text-left  min-w-[150px]">
                 {item[header]}

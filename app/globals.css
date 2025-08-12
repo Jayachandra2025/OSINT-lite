@@ -67,8 +67,16 @@ body.dark {
 }
 .kpi-card.high-risk {
   /* background-color: #ffffff; */
-  background-image: linear-gradient(160deg, #ffe9eb, #ffffff);
-  border-left: 4px solid #e4335f;
+  background-image: linear-gradient(to bottom right, #fff1e9, #fff9f6, #fff1e9);
+  border-left: 4px solid #e46533;
+}
+.kpi-card.critical-risk {
+  background-image: linear-gradient(to bottom right, #ffcfd3, #ffeff1, #ffcfd3);
+  border-left: 4px solid #b1002c;
+}
+.kpi-card.medium-risk {
+  background-image: linear-gradient(to bottom right, #ffecd4, #fffdf4, #fff5d4);
+  border-left: 4px solid #c77700;
 }
 
 @layer utilities {
@@ -139,5 +147,37 @@ body.dark {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.pdf-report {
+  /* background-color: white; */
+}
+.pdf-page {
+  width: 210mm;
+  font-family: "Inter", sans-serif;
+  /* min-height: 250mm; */
+  /* border-radius: 10px; */
+  /* padding: 30px 30px; */
+  /* border: 1px solid #29292925; */
+  background-color: white;
+  margin-inline: auto;
+}
+
+.pdf-page.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+@media print {
+  .avoid-page-break {
+    break-inside: avoid; /* Standard */
+    page-break-inside: avoid; /* Legacy support */
+  }
+  .pdf-page.break-after-page:not(:last-child) {
+    page-break-after: always;
   }
 }
