@@ -10,9 +10,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FaChartPie, FaGlobe } from "react-icons/fa";
+import { FaChartPie, FaDownload, FaGlobe } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaCode } from "react-icons/fa";
+import { MdDownload } from "react-icons/md";
 import BarChartComponent from "@/components/charts/results/BarChart";
 import PieChartComponent from "@/components/charts/results/PieChart";
 import {
@@ -26,6 +27,7 @@ import {
 import DynamicTable from "@/components/DynamicTable";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import { PDFDocument } from "pdf-lib";
 
 const mockData = [
   {
@@ -253,6 +255,73 @@ const Results = () => {
     }
   };
 
+  const downloadPDF = async () => {
+    const res = await fetch("/api/generate-pdf-report", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sessionId, search: titleDomain }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      console.log(data);
+      if (data.status && data.pdfBase64) {
+        const pdfData = data.pdfBase64;
+        // Step 1: Decode base64 to Uint8Array
+        const byteArray = Uint8Array.from(atob(pdfData), (char) =>
+          char.charCodeAt(0)
+        );
+
+        // Step 2: Load the PDF with pdf-lib
+        const pdfDoc = await PDFDocument.load(byteArray);
+        const totalPages = pdfDoc.getPageCount();
+
+        if (totalPages <= 1) {
+          alert("PDF must have more than 1 page to remove the last one.");
+          return;
+        }
+
+        // Step 3: Create new PDF and copy all but the last page
+        const newPdf = await PDFDocument.create();
+        const pagesToKeep = await newPdf.copyPages(pdfDoc, [
+          ...Array(totalPages - 1).keys(),
+        ]);
+        pagesToKeep.forEach((page) => newPdf.addPage(page));
+
+        // Step 4: Serialize to Uint8Array
+        const modifiedPdfBytes = await newPdf.save();
+
+        // Step 5: Create blob and trigger download
+        const blob = new Blob([modifiedPdfBytes], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download =
+          "report-" +
+          titleDomain +
+          "-" +
+          new Date().toLocaleString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }) +
+          ".pdf";
+        link.click();
+
+        URL.revokeObjectURL(url);
+      } else {
+        console.error("Failed to generate PDF");
+      }
+    } else {
+      console.error("Failed to generate PDF");
+    }
+  };
+
   useEffect(() => {
     if (sessionId) {
       fetchDashboard();
@@ -267,14 +336,22 @@ const Results = () => {
             OSINT Summary Report:{" "}
             <span className="text-blue-500">{titleDomain}</span>
           </h1>
-          <p className="text-sm text-gray-500">
-            Generated on:{" "}
-            {new Date().toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
+          <div className="text-sm text-gray-500 flex items-center gap-2">
+            <span>
+              Generated on:{" "}
+              {new Date().toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
+            <button
+              onClick={downloadPDF}
+              className="bg-gray-800 text-white px-4 py-2 pb-3 rounded-md flex items-center gap-2"
+            >
+              Download PDF <MdDownload className="text-xl" />
+            </button>
+          </div>
         </header>
         {dashboard ? (
           <>
