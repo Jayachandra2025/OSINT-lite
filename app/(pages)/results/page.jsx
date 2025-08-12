@@ -492,6 +492,7 @@ const Results = () => {
                           </div>
                         </CardContent>
                       </Card>
+
                       <Card className="col-span-2 md:col-span-2 lg:col-span-1 p-4">
                         <CardHeader className="">
                           <h3 className="text-xl font-bold">
@@ -632,7 +633,7 @@ const Results = () => {
                               </TableRow>
                             </TableHeader>
                             <TableBody>
-                              {dashboard?.data?.domainIntel?.domainPopularityReach?.data.map(
+                              {dashboard?.data?.domainIntel?.domainPopularityReach?.data?.map(
                                 (item, index) => (
                                   <TableRow key={index}>
                                     <TableCell>{item.Title}</TableCell>
@@ -649,6 +650,19 @@ const Results = () => {
                                 )
                               )}
                             </TableBody>
+                            {dashboard?.data?.domainIntel?.domainPopularityReach
+                              ?.data?.length == 0 ? (
+                              <TableBody>
+                                <TableRow>
+                                  <TableCell
+                                    colSpan={3}
+                                    className="text-center"
+                                  >
+                                    No data available
+                                  </TableCell>
+                                </TableRow>
+                              </TableBody>
+                            ) : null}
                           </Table>
                         </CardContent>
                       </Card>

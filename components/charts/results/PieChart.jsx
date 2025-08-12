@@ -125,9 +125,13 @@ const CustomTooltip = ({ active, payload, label, color }) => {
   }
 };
 
-const PieChartComponent = ({ data = mockData, title = "" }) => {
+const PieChartComponent = ({ data = [], title = "" }) => {
   if (data.length === 0) {
-    return null;
+    return (
+      <div className="flex items-center justify-center h-full">
+        <span className="text-sm text-gray-500">No data available</span>
+      </div>
+    );
   }
   const totalOfValues = data.reduce((acc, curr) => acc + curr.value, 0);
   data = data.map((item, index) => ({
