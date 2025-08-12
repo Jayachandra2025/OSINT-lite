@@ -53,8 +53,9 @@ const Page = () => {
     if (response.ok) {
       const data = await response.json();
       console.log(data);
-      if (data.sessions) {
-        setHistory(data.sessions);
+      if (data.sessions && data.sessions.length > 0) {
+        setHistory(data.sessions.reverse());
+        // setHistory(data.sessions);
       }
     } else {
       console.log(response);
