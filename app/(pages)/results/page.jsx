@@ -277,10 +277,10 @@ const Results = () => {
         const pdfDoc = await PDFDocument.load(byteArray);
         const totalPages = pdfDoc.getPageCount();
 
-        if (totalPages <= 1) {
-          alert("PDF must have more than 1 page to remove the last one.");
-          return;
-        }
+        // if (totalPages <= 1) {
+        //   alert("PDF must have more than 1 page to remove the last one.");
+        //   return;
+        // }
 
         // Step 3: Create new PDF and copy all but the last page
         const newPdf = await PDFDocument.create();

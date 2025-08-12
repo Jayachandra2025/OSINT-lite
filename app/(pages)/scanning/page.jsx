@@ -188,6 +188,9 @@ const Scanning = () => {
               />
             </li>
           </ul>
+          <p className="text-sm text-gray-500 text-center">
+            This may take a few minutes.
+          </p>
           <div className="w-full flex justify-center py-10">
             <button
               className="bg-search-button text-white px-6 pt-2 pb-3 rounded-md bg-black disabled:opacity-50 disabled:cursor-not-allowed"
