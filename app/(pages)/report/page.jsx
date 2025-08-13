@@ -579,13 +579,8 @@ const Results = () => {
                               <TableRow key={index}>
                                 <TableCell>{item.Title}</TableCell>
                                 <TableCell>{item.Description}</TableCell>
-                                <TableCell className="blur-sm pointer-events-none">
-                                  <Image
-                                    src={"/img/blur-rank.png"}
-                                    alt="Rank"
-                                    width={100}
-                                    height={100}
-                                  />
+                                <TableCell className="blur-[8px] pointer-events-none">
+                                  #234,345
                                 </TableCell>
                               </TableRow>
                             )
