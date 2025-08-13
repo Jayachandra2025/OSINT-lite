@@ -451,7 +451,7 @@ const Results = () => {
                     </CardHeader>
                     <CardContent>
                       <PieChartComponent
-                        title="URL Threat Scan"
+                        title="Security Vendors"
                         data={dashboard?.data?.dashboard?.domainReputationAnalysis?.data.map(
                           (item) => ({
                             label: item.Title,
