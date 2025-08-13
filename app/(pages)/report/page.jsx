@@ -26,6 +26,7 @@ import {
 import DynamicTable from "@/components/DynamicTable";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 const mockData = [
   {
@@ -334,7 +335,7 @@ const Results = () => {
               {dashboard?.kpiCards?.map((item, index) => (
                 <Card
                   key={index}
-                  className="col-span-2 bg-white shadow-lg cursor-pointer"
+                  className="col-span-2 bg-white shadow-md cursor-pointer border border-slate-200"
                   //   onClick={() =>
                   //     item.title === "Spoofed Domains"
                   //       ? setTabValue("domain-intel")
@@ -345,16 +346,19 @@ const Results = () => {
                   //       : setTabValue("dashboard")
                   //   }
                 >
-                  <CardHeader className="flex flex-col gap-2">
+                  <Link
+                    href={`#${item.id}`}
+                    className="flex flex-col gap-2 p-4 py-5"
+                  >
                     <h3 className="text-xl font-bold">{item.title}</h3>
                     <h2 className="text-4xl font-extrabold">{item.value}</h2>
                     <p className="text-sm text-gray-500">{item.description}</p>
-                  </CardHeader>
+                  </Link>
                 </Card>
               ))}
             </section>
             {dashboard?.data && (
-              <section className="">
+              <section className="mt-4">
                 <div className="grid grid-cols-2 gap-4 w-full ">
                   <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4 break-after-page">
                     <CardHeader className="">
@@ -438,6 +442,12 @@ const Results = () => {
                       <h3 className="text-xl font-bold">
                         Domain URL Reputation
                       </h3>
+                      <p className="text-base text-gray-500">
+                        {
+                          dashboard?.data?.dashboard?.domainReputationAnalysis
+                            ?.description
+                        }
+                      </p>
                     </CardHeader>
                     <CardContent>
                       <PieChartComponent
@@ -453,7 +463,10 @@ const Results = () => {
                     </CardContent>
                   </Card>
                 </div>
-                <div className="grid grid-cols-2 gap-4 w-full break-after-page">
+                <div
+                  className="grid grid-cols-2 gap-4 w-full break-after-page"
+                  id="exposedAccounts"
+                >
                   <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4">
                     <CardHeader className="">
                       <h3 className="text-xl font-bold mb-2">
@@ -476,7 +489,10 @@ const Results = () => {
                     </CardContent>
                   </Card>
                 </div>
-                <div className="grid grid-cols-2 gap-4 w-full ">
+                <div
+                  className="grid grid-cols-2 gap-4 w-full "
+                  id="spoofedDomains"
+                >
                   <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4 break-after-page">
                     <CardHeader className="">
                       <h3 className="text-xl font-bold mb-2">
@@ -590,7 +606,10 @@ const Results = () => {
                     </CardContent>
                   </Card>
                 </div>
-                <div className="grid grid-cols-2 gap-4 w-full break-after-page">
+                <div
+                  className="grid grid-cols-2 gap-4 w-full break-after-page"
+                  id="subdomains"
+                >
                   <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4">
                     <CardHeader className="">
                       <h3 className="text-xl font-bold mb-2">

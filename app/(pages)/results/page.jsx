@@ -535,6 +535,12 @@ const Results = () => {
                           <h3 className="text-xl font-bold">
                             Domain Reputation Analysis
                           </h3>
+                          <p className="text-base text-gray-500">
+                            {
+                              dashboard?.data?.dashboard
+                                ?.domainReputationAnalysis?.description
+                            }
+                          </p>
                         </CardHeader>
                         <CardContent>
                           <PieChartComponent
