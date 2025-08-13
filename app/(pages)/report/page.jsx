@@ -262,9 +262,16 @@ const Results = () => {
   return (
     <main className="bg-results pdf-report">
       <div className="flex flex-col min-h-screen pb-16 pdf-page">
-        <header className="flex justify-between items-center mb-4">
-          <h1 className="text-xl font-bold">
-            OSINT Summary Report:{" "}
+        <header className="flex flex-col justify-center items-center break-after-page min-h-[600px] gap-4">
+          <Image
+            src="/infosec_logos/infoseck2k-dark.svg"
+            alt="logo"
+            width={200}
+            height={100}
+            className=""
+          />
+          <h1 className="text-2xl font-bold text-center">
+            OSINT Summary Report :{" "}
             <span className="text-blue-500">{titleDomain}</span>
           </h1>
           <p className="text-sm text-gray-500">
@@ -491,7 +498,7 @@ const Results = () => {
                       /> */}
                       <Table className="w-full ">
                         <TableHeader>
-                          <TableRow className="text-[10px]">
+                          <TableRow className="text-[11px]">
                             <TableHead>Dns A</TableHead>
                             <TableHead>Dns Aaaa</TableHead>
                             <TableHead>Dns Mx</TableHead>
@@ -503,7 +510,7 @@ const Results = () => {
                         <TableBody>
                           {dashboard?.data?.domainIntel?.samplePotentiallySpoofedDomains?.data.map(
                             (item, index) => (
-                              <TableRow key={index} className="text-[10px]">
+                              <TableRow key={index} className="text-[11px]">
                                 <TableCell>{item["Dns A"] || "-"}</TableCell>
                                 <TableCell>{item["Dns Aaaa"] || "-"}</TableCell>
                                 <TableCell>{item["Dns Mx"] || "-"}</TableCell>
