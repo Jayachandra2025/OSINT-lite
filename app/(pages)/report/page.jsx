@@ -261,8 +261,8 @@ const Results = () => {
 
   return (
     <main className="bg-results pdf-report">
-      <div className="flex flex-col p-16 min-h-screen pb-16 pdf-page">
-        <header className="flex justify-between items-center">
+      <div className="flex flex-col min-h-screen pb-16 pdf-page">
+        <header className="flex justify-between items-center mb-4">
           <h1 className="text-xl font-bold">
             OSINT Summary Report:{" "}
             <span className="text-blue-500">{titleDomain}</span>
@@ -429,12 +429,12 @@ const Results = () => {
                   <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4 break-after-page">
                     <CardHeader className="">
                       <h3 className="text-xl font-bold">
-                        Domain Reputation Analysis
+                        Domain URL Reputation
                       </h3>
                     </CardHeader>
                     <CardContent>
                       <PieChartComponent
-                        title="Domains"
+                        title="URL Threat Scan"
                         data={dashboard?.data?.dashboard?.domainReputationAnalysis?.data.map(
                           (item) => ({
                             label: item.Title,
@@ -483,12 +483,60 @@ const Results = () => {
                       </p>
                     </CardHeader>
                     <CardContent>
-                      <DynamicTable
+                      {/* <DynamicTable
                         data={
                           dashboard?.data?.domainIntel
                             ?.samplePotentiallySpoofedDomains?.data
                         }
-                      />
+                      /> */}
+                      <Table className="w-full ">
+                        <TableHeader>
+                          <TableRow className="text-[10px]">
+                            <TableHead>Dns A</TableHead>
+                            <TableHead>Dns Aaaa</TableHead>
+                            <TableHead>Dns Mx</TableHead>
+                            <TableHead>Dns Ns</TableHead>
+                            <TableHead>Domain</TableHead>
+                            <TableHead>Fuzzer</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {dashboard?.data?.domainIntel?.samplePotentiallySpoofedDomains?.data.map(
+                            (item, index) => (
+                              <TableRow key={index} className="text-[10px]">
+                                <TableCell>{item["Dns A"] || "-"}</TableCell>
+                                <TableCell>{item["Dns Aaaa"] || "-"}</TableCell>
+                                <TableCell>{item["Dns Mx"] || "-"}</TableCell>
+                                <TableCell>{item["Dns Ns"] || "-"}</TableCell>
+                                <TableCell>{item["Domain"]}</TableCell>
+                                <TableCell>{item["Fuzzer"] || "-"}</TableCell>
+                              </TableRow>
+                            )
+                          )}
+                        </TableBody>
+                      </Table>
+                      {/* <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Title</TableHead>
+                            <TableHead>Description</TableHead>
+                            <TableHead>Rank</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {dashboard?.data?.domainIntel?.samplePotentiallySpoofedDomains?.data.map(
+                            (item, index) => (
+                              <TableRow key={index}>
+                                <TableCell>{item.Title}</TableCell>
+                                <TableCell>{item.Description}</TableCell>
+                                <TableCell className="blur-sm pointer-events-none">
+                                  
+                                </TableCell>
+                              </TableRow>
+                            )
+                          )}
+                        </TableBody>
+                      </Table> */}
                     </CardContent>
                   </Card>
                   <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4 break-after-page">

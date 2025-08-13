@@ -35,6 +35,17 @@ body.dark {
   background-repeat: no-repeat;
   /* min-height: 100svh; */
 }
+.search-caption {
+  color: transparent;
+  background-image: linear-gradient(to bottom, #000000, #707070);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* background-size: 200% 100%;
+  background-position: 100% 0;
+  transition: background-position 0.5s ease-in-out; */
+}
 
 .bg-results {
   background-color: #f3f4f6;
@@ -83,6 +94,12 @@ body.dark {
   border: 1px solid #e0e0e0;
   border-radius: 10px;
   padding: 10px;
+}
+table tr th {
+  border: 1px solid #8a8a8a;
+}
+table tr td {
+  border: 1px solid #8a8a8a;
 }
 
 @layer utilities {
@@ -160,7 +177,7 @@ body.dark {
   /* background-color: white; */
 }
 .pdf-page {
-  /* width: 210mm; */
+  width: 210mm;
   font-family: "Inter", sans-serif;
   /* min-height: 250mm; */
   /* border-radius: 10px; */

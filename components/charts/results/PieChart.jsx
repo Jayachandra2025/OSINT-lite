@@ -178,7 +178,7 @@ const PieChartComponent = ({ data = [], title = "" }) => {
                       <tspan
                         x={viewBox.cx}
                         y={viewBox.cy}
-                        className="fill-black text-xl font-bold"
+                        className="fill-black text-lg font-semibold tracking-tighter"
                       >
                         {totalOfValues.toLocaleString()}
                         {" " + title}

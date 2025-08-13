@@ -329,9 +329,16 @@ const Results = () => {
   }, [sessionId]);
 
   return (
-    <main className="bg-results">
-      <div className="flex flex-col p-16 min-h-screen pb-16">
-        <header className="flex justify-between items-center">
+    <main className="bg-results relative">
+      <Image
+        src="/infosec_logos/infoseck2k-dark.svg"
+        alt="logo"
+        width={100}
+        height={60}
+        className="absolute top-[1%] left-[1%] z-10"
+      />
+      <div className="flex flex-col p-16 min-h-screen pb-16 ">
+        <header className="flex justify-between items-center mt-[20px]">
           <h1 className="text-3xl font-bold">
             OSINT Summary Report:{" "}
             <span className="text-blue-500">{titleDomain}</span>
@@ -529,7 +536,7 @@ const Results = () => {
                         </CardHeader>
                         <CardContent>
                           <PieChartComponent
-                            title="Domains"
+                            title="Security Vendors"
                             data={dashboard?.data?.dashboard?.domainReputationAnalysis?.data.map(
                               (item) => ({
                                 label: item.Title,

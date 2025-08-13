@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { TbWorldSearch } from "react-icons/tb";
 
 const Page = () => {
   const router = useRouter();
@@ -74,14 +76,23 @@ const Page = () => {
   }, [sessionId]);
 
   return (
-    <main className="bg-search">
+    <main className="bg-search relative">
+      <Image
+        src="/infosec_logos/infoseck2k-dark.svg"
+        alt="logo"
+        width={130}
+        height={60}
+        className="absolute top-[2%] left-[2%] z-10"
+      />
       <div className="flex flex-col items-center  gap-4 min-h-screen">
-        <h1 className="text-4xl font-bold mt-[10%]">K2K Discovery</h1>
+        <h1 className="text-4xl font-bold mt-[10%] search-caption">
+          See More Than Just a Website
+        </h1>
         <div className="grid grid-cols-5 gap-4 px-[10%] w-full">
           <div className="col-span-4 ">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Enter a domain name that you want to investigate"
               className="global-search-input"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
@@ -93,7 +104,11 @@ const Page = () => {
             />
           </div>
           <div className="col-span-1 ">
-            <button className="global-search-button" onClick={handleSearch}>
+            <button
+              className="global-search-button flex items-center justify-center"
+              onClick={handleSearch}
+            >
+              <TbWorldSearch className="text-2xl mr-2" />
               Search
             </button>
           </div>
@@ -102,11 +117,11 @@ const Page = () => {
           <h2 className="text-xl font-semibold">Search History:</h2>
           <hr className="w-full border-b border-[#c7c7c7] my-2" />
           {history.length > 0 ? (
-            <div className="grid grid-cols-2 gap-4 mt-5">
+            <div className="flex flex-col gap-1 mt-5 max-h-[300px] overflow-y-auto pr-2">
               {history.map((item) => (
                 <div
                   key={item.sessionId}
-                  className="bg-gray-100 p-4 rounded-md shadow-md cursor-pointer hover:bg-white transition-all duration-300 border border-gray-200 flex justify-between"
+                  className="bg-gray-100 p-4 rounded-md shadow-sm hover:shadow-md cursor-pointer hover:bg-white transition-all duration-300 border border-gray-200 flex justify-between"
                   onClick={() => {
                     router.push(
                       `/results?search=${item.domain}&sessionId=${item.sessionId}`
