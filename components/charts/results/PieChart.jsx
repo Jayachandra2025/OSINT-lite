@@ -202,7 +202,7 @@ const PieChartComponent = ({ data = [], title = "" }) => {
               const angle =
                 ((data.slice(0, index).reduce((a, b) => a + b.value, 0) +
                   entry.value / 2) /
-                  total) *
+                  totalOfValues) *
                 2 *
                 Math.PI;
 
