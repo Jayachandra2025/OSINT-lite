@@ -132,9 +132,10 @@ const Scanning = () => {
       <Image
         src="/infosec_logos/infoseck2k-dark.svg"
         alt="logo"
-        width={130}
+        width={100}
         height={60}
-        className="absolute top-[2%] left-[2%] z-10"
+        className="absolute top-[1%] left-[1%] z-10 cursor-pointer"
+        onClick={() => router.push("/")}
       />
       <div className="flex flex-col p-16 min-h-screen">
         <>

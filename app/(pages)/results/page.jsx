@@ -25,7 +25,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import DynamicTable from "@/components/DynamicTable";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { PDFDocument } from "pdf-lib";
 
@@ -232,6 +232,7 @@ const Results = () => {
   const sessionId = searchParams.get("sessionId");
   const titleDomain = searchParams.get("search");
   const [tabValue, setTabValue] = useState("dashboard");
+  const router = useRouter();
 
   const fetchDashboard = async () => {
     try {
@@ -335,7 +336,8 @@ const Results = () => {
         alt="logo"
         width={100}
         height={60}
-        className="absolute top-[1%] left-[1%] z-10"
+        className="absolute top-[1%] left-[1%] z-10 cursor-pointer"
+        onClick={() => router.push("/")}
       />
       <div className="flex flex-col p-16 min-h-screen pb-16 ">
         <header className="flex justify-between items-center mt-[20px]">
