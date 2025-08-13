@@ -480,12 +480,50 @@ const Results = () => {
                       </p>
                     </CardHeader>
                     <CardContent className="">
-                      <DynamicTable
+                      {/* <DynamicTable
                         data={
                           dashboard?.data?.exposedAccounts
                             ?.sampleExposedAccounts?.data
                         }
-                      />
+                      /> */}
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="text-[10px]">
+                            <TableHead>Address</TableHead>
+                            <TableHead>Company</TableHead>
+                            <TableHead>Database Name</TableHead>
+                            <TableHead>Dob</TableHead>
+                            <TableHead>Email</TableHead>
+                            <TableHead>Hashed Password</TableHead>
+                            <TableHead>Id</TableHead>
+                            <TableHead>Name</TableHead>
+                            <TableHead>Phone</TableHead>
+                            <TableHead>Url</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {dashboard?.data?.exposedAccounts?.sampleExposedAccounts?.data?.map(
+                            (item, index) => (
+                              <TableRow key={index} className="text-[10px]">
+                                <TableCell>{item["Address"] || "-"}</TableCell>
+                                <TableCell>{item["Company"] || "-"}</TableCell>
+                                <TableCell>
+                                  {item["Database Name"] || "-"}
+                                </TableCell>
+                                <TableCell>{item["Dob"] || "-"}</TableCell>
+                                <TableCell>{item["Email"] || "-"}</TableCell>
+                                <TableCell>
+                                  {item["Hashed Password"] || "-"}
+                                </TableCell>
+                                <TableCell>{item["Id"] || "-"}</TableCell>
+                                <TableCell>{item["Name"] || "-"}</TableCell>
+                                <TableCell>{item["Phone"] || "-"}</TableCell>
+                                <TableCell>{item["Url"] || "-"}</TableCell>
+                              </TableRow>
+                            )
+                          )}
+                        </TableBody>
+                      </Table>
                     </CardContent>
                   </Card>
                 </div>
