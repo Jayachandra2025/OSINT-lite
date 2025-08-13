@@ -197,46 +197,6 @@ const PieChartComponent = ({ data = [], title = "" }) => {
             />
           </Pie>
           {/* Arrows from slices to legend */}
-          <g>
-            {data.map((entry, index) => {
-              const angle =
-                ((data.slice(0, index).reduce((a, b) => a + b.value, 0) +
-                  entry.value / 2) /
-                  totalOfValues) *
-                2 *
-                Math.PI;
-
-              const x1 = 150 + Math.cos(angle) * 120;
-              const y1 = 150 + Math.sin(angle) * 120;
-              const x2 = 150 + Math.cos(angle) * 150;
-              const y2 = 150 + Math.sin(angle) * 150;
-
-              return (
-                <polyline
-                  key={index}
-                  points={`${x1},${y1} ${x2},${y2}`}
-                  stroke={entry.color}
-                  strokeWidth={2}
-                  fill="none"
-                  markerEnd="url(#arrowhead)"
-                />
-              );
-            })}
-
-            {/* Arrowhead definition */}
-            <defs>
-              <marker
-                id="arrowhead"
-                markerWidth="6"
-                markerHeight="6"
-                refX="5"
-                refY="2"
-                orient="auto"
-              >
-                <path d="M0,0 L0,4 L6,2 Z" fill="currentColor" />
-              </marker>
-            </defs>
-          </g>
         </PieChart>
       </ChartContainer>
       <div className="flex flex-row gap-2 w-full justify-center flex-wrap">
