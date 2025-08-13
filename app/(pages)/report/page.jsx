@@ -608,7 +608,7 @@ const Results = () => {
                 </div>
                 <div
                   className="grid grid-cols-2 gap-4 w-full break-after-page"
-                  id="subdomains"
+                  id="exposedSubdomains"
                 >
                   <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4">
                     <CardHeader className="">
