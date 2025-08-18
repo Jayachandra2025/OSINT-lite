@@ -250,8 +250,8 @@ table tr td {
   .landscape th,
   .landscape td {
     word-break: break-word;
-    padding: 0;
-    line-height: 1;
+    padding: 2px;
+    line-height: 1.1;
   }
 
   /* Ensure scroll wrappers expand fully on print */
