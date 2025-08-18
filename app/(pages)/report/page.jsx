@@ -409,7 +409,7 @@ const Results = () => {
                       </div>
                     </CardContent>
                   </Card>
-                  <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4">
+                  <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4 break-after-page">
                     <CardHeader className="">
                       <h3 className="text-xl font-bold">
                         {

@@ -221,7 +221,7 @@ table tr td {
   /* Apply to any section you mark as .landscape */
   .landscape {
     page: landscape;
-    break-before: page; /* force new page before section */
+    /* break-before: page; force new page before section */
     break-after: page; /* optional: end section cleanly */
   }
 
