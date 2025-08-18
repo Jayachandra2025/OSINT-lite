@@ -494,7 +494,7 @@ const Results = () => {
                             <TableHead>Database Name</TableHead>
                             <TableHead>Dob</TableHead>
                             <TableHead>Email</TableHead>
-                            <TableHead>Hashed Password</TableHead>
+                            {/* <TableHead>Hashed Password</TableHead> */}
                             <TableHead>Id</TableHead>
                             <TableHead>Name</TableHead>
                             <TableHead>Phone</TableHead>
@@ -512,9 +512,9 @@ const Results = () => {
                                 </TableCell>
                                 <TableCell>{item["Dob"] || "-"}</TableCell>
                                 <TableCell>{item["Email"] || "-"}</TableCell>
-                                <TableCell>
+                                {/* <TableCell>
                                   {item["Hashed Password"] || "-"}
-                                </TableCell>
+                                </TableCell> */}
                                 <TableCell>{item["Id"] || "-"}</TableCell>
                                 <TableCell>{item["Name"] || "-"}</TableCell>
                                 <TableCell>{item["Phone"] || "-"}</TableCell>
