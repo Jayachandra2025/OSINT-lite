@@ -195,18 +195,6 @@ table tr td {
   gap: 10px;
 }
 
-/* Default pages: A4 portrait */
-@page {
-  size: A4 portrait;
-  margin: 12mm;
-}
-
-/* Landscape pages for the Breaches table */
-@page breaches-landscape {
-  size: A4 landscape;
-  margin: 12mm;
-}
-
 @media print {
   /* Existing rules */
   .avoid-page-break {
