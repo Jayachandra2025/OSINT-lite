@@ -195,12 +195,77 @@ table tr td {
   gap: 10px;
 }
 
+/* Default pages: A4 portrait */
+@page {
+  size: A4 portrait;
+  margin: 12mm;
+}
+
+/* Landscape pages for the Breaches table */
+@page breaches-landscape {
+  size: A4 landscape;
+  margin: 12mm;
+}
+
 @media print {
+  /* Existing rules */
   .avoid-page-break {
     break-inside: avoid; /* Standard */
     page-break-inside: avoid; /* Legacy support */
   }
+
   .pdf-page.break-after-page:not(:last-child) {
     page-break-after: always;
+  }
+
+  /* Default portrait pages */
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  /* Reusable landscape page style */
+  @page landscape {
+    size: A4 landscape;
+    margin: 12mm;
+  }
+
+  /* Apply to any section you mark as .landscape */
+  .landscape {
+    page: landscape;
+    break-before: page; /* force new page before section */
+    break-after: page; /* optional: end section cleanly */
+  }
+
+  /* Fix tables so they paginate correctly in landscape */
+  .landscape table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 12px; /* adjust as needed */
+  }
+
+  .landscape thead {
+    display: table-header-group;
+  }
+  .landscape tfoot {
+    display: table-footer-group;
+  }
+
+  .landscape tr,
+  .landscape thead,
+  .landscape tbody {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .landscape th,
+  .landscape td {
+    word-break: break-word;
+  }
+
+  /* Ensure scroll wrappers expand fully on print */
+  .landscape .scroll-x {
+    overflow: visible !important;
   }
 }

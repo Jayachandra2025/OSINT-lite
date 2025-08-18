@@ -464,7 +464,7 @@ const Results = () => {
                   </Card>
                 </div>
                 <div
-                  className="grid grid-cols-2 gap-4 w-full break-after-page"
+                  className="grid grid-cols-2 gap-4 w-full landscape break-after-page"
                   id="exposedAccounts"
                 >
                   <Card className="col-span-2 md:col-span-2 lg:col-span-2 p-4">
@@ -479,7 +479,7 @@ const Results = () => {
                         }
                       </p>
                     </CardHeader>
-                    <CardContent className="">
+                    <CardContent className="scroll-x">
                       {/* <DynamicTable
                         data={
                           dashboard?.data?.exposedAccounts
